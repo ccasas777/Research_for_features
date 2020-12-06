@@ -52,7 +52,7 @@ def gen_random_mask(h, w, M):
         ]
 
         permut = [i for i in range(len(active_locs))]
-        permut = permutations(permut)
+        permuts = permutations(permut)
         masks.append(mask)
 
-    return masks
+    return masks, permuts

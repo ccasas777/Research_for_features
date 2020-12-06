@@ -100,12 +100,15 @@ def img_gen(img_root, config, isess):
     M = 1
     for img_path, img_name in zip(img_paths, img_names):
         origin_img = mpimg.imread(img_path)
-
-        h, w, c = origin_img.shape
-        mask = gen_random_mask(h, w, M)
         rclasses, rscores, rbboxes = process_image(origin_img)
-        img = visualization.gen_bboxes(img, rclasses, rscores, rbboxes)
+        h, w, c = origin_img.shape
+        mask_images, permuts = gen_random_mask(h, w, M)
+        for masked_image in mask_images:
+            m_rclasses, m_rscores, m_rbboxes = process_image(masked_image)
+        #TODO: latter, it will add shapley based on activated pixel
+        # I assumed when pixel value = 0, it will not contribure Shapley values.
 
+        # img = visualization.gen_bboxes(img, rclasses, rscores, rbboxes)
         # print('writing %s' % os.path.join(save_path, img_name))
         # cv2.imwrite(os.path.join(save_path, img_name), img)
     #TODO: calculate shapley values.....
