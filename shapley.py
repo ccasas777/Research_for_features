@@ -20,7 +20,7 @@ from notebooks import visualization
 
 from pprint import pprint
 from pathlib import Path
-from utils.tools import set_gpu_options, is_image_valid, load_configger
+from utils.tools import set_gpu_options, is_image_valid, load_configger, gen_random_mask
 from PIL import Image
 from itertools import permutations
 
@@ -97,13 +97,17 @@ def img_gen(img_root, config, isess):
     ssd_anchors = ssd_net.anchors(net_input_shape)
     img_names = list(filter(lambda x: 'jpg' in x, os.listdir(img_root)))
     img_paths = list(map(lambda x: os.path.join(img_root, x), img_names))
-
+    M = 1
     for img_path, img_name in zip(img_paths, img_names):
-        img = mpimg.imread(img_path)
-        rclasses, rscores, rbboxes = process_image(img)
+        origin_img = mpimg.imread(img_path)
+
+        h, w, c = origin_img.shape
+        mask = gen_random_mask(h, w, M)
+        rclasses, rscores, rbboxes = process_image(origin_img)
         img = visualization.gen_bboxes(img, rclasses, rscores, rbboxes)
-        print('writing %s' % os.path.join(save_path, img_name))
-        cv2.imwrite(os.path.join(save_path, img_name), img)
+
+        # print('writing %s' % os.path.join(save_path, img_name))
+        # cv2.imwrite(os.path.join(save_path, img_name), img)
     #TODO: calculate shapley values.....
 
 
