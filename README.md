@@ -1,25 +1,23 @@
 # Features Research
 
-Environments:
+inference pipline based on reference: [links:https://github.com/balancap/SSD-Tensorflow]
+Shapley calculation followed by reference: [links:https://arxiv.org/abs/1705.07874]
+**Installation**
 
-tensorflow 1.14
+Python environment
 
-install the tf-slims by using 'python slim/setup.py'
+with a new python environment
 
-PYTHOBPATH : 'THE REPO DIR'
+make install
 
-# Files:
+**Informations for Files**
 
 object_detection : the offical library download from [here](https://github.com/tensorflow/models)
 
 slim: same as above.
 
-traffic_light_inference_graph: using to save the exported model
+image source: imgs/dogs.jpg
 
-Main.ipynb : the main training file.
-
-test_model.ipynb: after the Main.ipynb to test the model performance
-
-imgs: the test images.
+Entry point is _shapley.py_
 
 <img src="readme_src/1.png">
