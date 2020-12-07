@@ -8,8 +8,8 @@ install the tf-slims by using 'python slim/setup.py'
 
 PYTHOBPATH : 'THE REPO DIR'
 
-
 # Files:
+
 object_detection : the offical library download from [here](https://github.com/tensorflow/models)
 
 slim: same as above.
@@ -21,3 +21,5 @@ Main.ipynb : the main training file.
 test_model.ipynb: after the Main.ipynb to test the model performance
 
 imgs: the test images.
+
+<img src="readme_src/1.png">
